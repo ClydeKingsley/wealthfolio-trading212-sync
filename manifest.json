@@ -1,0 +1,63 @@
+{
+  "id": "trading212-sync",
+  "name": "Trading 212 Sync",
+  "version": "0.1.17",
+  "description": "Read-only Trading 212 full-history sync with automatic asset creation every 5 minutes",
+  "author": "ClydeKingsley",
+  "main": "dist/addon.js",
+  "sdkVersion": "3.6.2",
+  "minWealthfolioVersion": "3.6.2",
+  "enabled": true,
+  "hostDependencies": {
+    "@tanstack/react-query": "^5.90.0",
+    "@wealthfolio/addon-sdk": "^3.6.2",
+    "@wealthfolio/ui": "^3.6.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.561.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.7.0"
+  },
+  "permissions": [
+    {
+      "category": "accounts",
+      "functions": ["getAll"],
+      "purpose": "Select the existing Trading 212 Wealthfolio account"
+    },
+    {
+      "category": "activities",
+      "functions": ["getAll", "checkImport", "saveMany"],
+      "purpose": "Validate and deduplicate activities, then save them with automatically resolved securities through Wealthfolio's native pipeline"
+    },
+    {
+      "category": "market-data",
+      "functions": ["searchTicker"],
+      "purpose": "Resolve each Trading 212 security to one exact Wealthfolio market identity before automatic creation"
+    },
+    {
+      "category": "assets",
+      "functions": ["getProfile"],
+      "purpose": "Verify the exact asset identity produced by native resolution or creation"
+    },
+    {
+      "category": "portfolio",
+      "functions": ["getHoldings"],
+      "purpose": "Compare Wealthfolio holdings with Trading 212 after each sync"
+    },
+    {
+      "category": "network",
+      "functions": ["request"],
+      "purpose": "Read account history and positions from the Trading 212 API"
+    },
+    {
+      "category": "secrets",
+      "functions": ["set", "use", "delete"],
+      "purpose": "Securely store and use the Trading 212 read-only API credentials"
+    }
+  ],
+  "network": {
+    "allowedHosts": ["live.trading212.com"]
+  },
+  "keywords": ["wealthfolio", "trading212", "sync", "read-only"],
+  "license": "MIT"
+}

@@ -1,0 +1,64 @@
+{
+  "name": "wealthfolio-trading212-sync-addon",
+  "version": "0.1.17",
+  "description": "Read-only Trading 212 full-history sync with automatic Wealthfolio asset creation",
+  "private": true,
+  "author": "ClydeKingsley",
+  "type": "module",
+  "main": "dist/addon.js",
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "keywords": ["wealthfolio", "trading212", "addon", "portfolio", "read-only"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClydeKingsley/wealthfolio-trading212-sync.git"
+  },
+  "homepage": "https://github.com/ClydeKingsley/wealthfolio-trading212-sync#readme",
+  "bugs": {
+    "url": "https://github.com/ClydeKingsley/wealthfolio-trading212-sync/issues"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "dev:server": "wealthfolio dev",
+    "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-addon.ps1",
+    "bundle": "pnpm build && pnpm package",
+    "verify:release": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
+    "test": "esbuild tests/mapping.test.ts --bundle --platform=node --format=esm --outfile=.test-output/mapping-test.mjs && node .test-output/mapping-test.mjs && esbuild tests/api.test.ts --bundle --platform=node --format=esm --outfile=.test-output/api-test.mjs && node .test-output/api-test.mjs && esbuild tests/auto-assets.test.ts --bundle --platform=node --format=esm --outfile=.test-output/auto-assets-test.mjs && node .test-output/auto-assets-test.mjs && esbuild tests/controller.test.ts --bundle --platform=node --format=esm --outfile=.test-output/controller-test.mjs && node .test-output/controller-test.mjs",
+    "lint": "tsc --noEmit",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.90.0",
+    "@wealthfolio/addon-sdk": "^3.6.2",
+    "@wealthfolio/ui": "^3.6.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.561.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.7.0"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.90.20",
+    "@tailwindcss/vite": "^4.1.13",
+    "@wealthfolio/addon-dev-tools": "^3.6.0",
+    "@wealthfolio/addon-sdk": "^3.6.2",
+    "@wealthfolio/ui": "^3.6.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.2.13",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.0.2",
+    "date-fns": "^4.1.0",
+    "esbuild": "^0.28.1",
+    "lucide-react": "^0.561.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "recharts": "^3.7.0",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5"
+  }
+}

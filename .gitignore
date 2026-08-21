@@ -1,0 +1,23 @@
+node_modules/
+.test-output/
+dist/
+release/
+.idea/
+.vscode/
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+.env
+.env.*
+*.log
+
+# Never commit local portfolio exports, databases, or credentials.
+*.csv
+*.pdf
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*credential*
+*secret*

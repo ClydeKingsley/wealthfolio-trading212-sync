@@ -30,6 +30,8 @@ project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   for public issues and pull requests.
 - Add a least-privilege Windows CI workflow that type-checks, tests, builds, and
   packages the add-on from the lockfile.
+- Pin the CI checkout and Node setup actions to reviewed Node 24-based release
+  commits.
 - Pin the transitive Nano ID 3.x build dependency to the patched 3.3.18 release.
 
 ## [0.1.16] - 2026-08-01
